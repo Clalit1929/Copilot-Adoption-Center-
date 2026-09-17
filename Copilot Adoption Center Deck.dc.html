@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#0d3346;}
+  body{font-family:'Assistant',system-ui,sans-serif;}
+  *{box-sizing:border-box;}
+  a{color:#12798f;text-decoration:none;}
+  a:hover{color:#0d5c6e;}
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="שער" data-screen-label="01" data-speaker-notes="פתיחה: זו הצעה לעיצוב מחדש של המיקרו-סייט, לא קונספט חדש. שומרים על שפת הקמפיין ומפשטים את המבנה." dir="rtl" style="background:linear-gradient(120deg,#5cc98a,#2bb9b6 45%,#3d9fdd);display:flex;align-items:center;padding:0 130px;color:#fff;overflow:hidden">
+    <div style="position:absolute;left:-140px;top:-160px;width:640px;height:640px;border-radius:50%;background:rgba(255,255,255,.12)"></div>
+    <div style="flex:1;position:relative">
+      <div style="display:inline-block;padding:10px 26px;border-radius:999px;background:rgba(255,255,255,.22);font-size:26px;font-weight:700;margin-bottom:34px">הצעת עיצוב · גרסה 2</div>
+      <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:104px;line-height:1.05;margin:0 0 28px;letter-spacing:-.02em">מרכז Copilot Chat</h1>
+      <p style="font-size:40px;line-height:1.45;margin:0;max-width:22ch;color:#fff">ארבעה יעדים. כל תוכן במרחק לחיצה או שתיים.</p>
+    </div>
+    <div style="width:430px;height:560px;border-radius:36px;border:2px dashed rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:24px;color:rgba(255,255,255,.9);text-align:center;line-height:1.8;flex:0 0 auto;position:relative">דמות הרובוט<br/>מהחוברת</div>
+  </section>
+
+  <section data-label="הבעיה" data-screen-label="02" data-speaker-notes="המבנה הקיים מפזר תוכן לפי סוג קובץ. המבנה החדש מארגן לפי מה שהעובד רוצה לעשות." dir="rtl" style="background:#fff;padding:110px 130px;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:76px;margin:0 0 20px;color:#123a52">מה השתנה</h2>
+    <p style="font-size:34px;color:#4d7186;margin:0 0 64px;max-width:44ch">פחות קטגוריות, פחות קליקים, ותוכן שמאורגן לפי משימה ולא לפי סוג קובץ.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div style="background:#fbfcfc;border:2px solid #eceff0;border-radius:32px;padding:48px">
+        <div style="font-size:26px;font-weight:700;color:#7a6b62;margin-bottom:24px">קודם</div>
+        <div style="font-size:34px;line-height:1.85;color:#4d7186">תשעה אזורי תוכן · תפריטים כפולים · מדריכים, סרטונים וקבצים בנפרד · חיפוש לא ברור</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#f0fbf6,#eaf7fb);border:2px solid #cfe6ea;border-radius:32px;padding:48px">
+        <div style="font-size:26px;font-weight:700;color:#1d6e4c;margin-bottom:24px">עכשיו</div>
+        <div style="font-size:34px;line-height:1.85;color:#274d61">ארבעה יעדים בלבד · תפריט אחד · כרטיסים במקום טבלאות · כל פרומפט מוכן להעתקה</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="ארבעת היעדים" data-screen-label="03" data-speaker-notes="זו כל הניווט. אין תפריטי משנה, אין דפי ביניים." dir="rtl" style="background:#fbfeff;padding:100px 130px;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:76px;margin:0 0 56px;color:#123a52">הניווט החדש</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px">
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:32px;padding:46px 38px;box-shadow:0 10px 30px rgba(18,58,82,.07)">
+        <div style="width:88px;height:88px;border-radius:26px;background:#eafaf3;color:#1d6e4c;display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:28px">✦</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:38px;color:#123a52;margin-bottom:14px">מאגר פרומפטים</div>
+        <div style="font-size:27px;line-height:1.55;color:#4d7186">ארבע קטגוריות, 20 פרומפטים מוכנים להעתקה.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:32px;padding:46px 38px;box-shadow:0 10px 30px rgba(18,58,82,.07)">
+        <div style="width:88px;height:88px;border-radius:26px;background:#eef6fc;color:#2c6489;display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:28px">⌸</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:38px;color:#123a52;margin-bottom:14px">עזרים ל‑Teams</div>
+        <div style="font-size:27px;line-height:1.55;color:#4d7186">שמונה שימושים בפגישה ובצ׳אט, עם הדגמה.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:32px;padding:46px 38px;box-shadow:0 10px 30px rgba(18,58,82,.07)">
+        <div style="width:88px;height:88px;border-radius:26px;background:#f2f0fb;color:#5245a0;display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:28px">?</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:38px;color:#123a52;margin-bottom:14px">שאלות נפוצות</div>
+        <div style="font-size:27px;line-height:1.55;color:#4d7186">חיפוש, שש קטגוריות ואקורדיון.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:32px;padding:46px 38px;box-shadow:0 10px 30px rgba(18,58,82,.07)">
+        <div style="width:88px;height:88px;border-radius:26px;background:#fdf2e8;color:#9a5518;display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:28px">★</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:38px;color:#123a52;margin-bottom:14px">הטיפ השבועי</div>
+        <div style="font-size:27px;line-height:1.55;color:#4d7186">תוכן מתחדש שמחזיר עובדים לאתר.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="דף הבית" data-screen-label="04" data-speaker-notes="שאלה אחת במרכז, ארבע אריחים גדולים, ובאנר הטיפ השבועי מתחת. הודעת המידע הרגיש נשארת גלויה." dir="rtl" style="background:#fff;padding:90px 130px;display:flex;flex-direction:column;justify-content:center">
+    <div style="display:flex;align-items:baseline;gap:28px;margin-bottom:16px">
+      <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:70px;margin:0;color:#123a52">דף הבית</h2>
+      <div style="font-size:30px;color:#3d6076">שאלה אחת, ארבע תשובות</div>
+    </div>
+    <div style="background:#fbfeff;border:2px solid #e6f2f4;border-radius:36px;padding:56px;display:flex;flex-direction:column;gap:34px">
+      <div style="display:flex;align-items:center;gap:40px">
+        <div style="flex:1">
+          <h3 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:60px;margin:0 0 14px;color:#123a52">איך Copilot יכול לעזור לך היום?</h3>
+          <div style="font-size:30px;color:#4d7186">ארבעה מקומות. הכול במרחק לחיצה או שתיים.</div>
+        </div>
+        <div style="width:180px;height:230px;border-radius:26px;border:2px dashed #bfe3e0;background:repeating-linear-gradient(135deg,#f4fcfb,#f4fcfb 12px,#eaf7f6 12px,#eaf7f6 24px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:18px;color:#3f7580;text-align:center;flex:0 0 auto">מסקוט</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;color:#1d6e4c">✦ מאגר פרומפטים</div>
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;color:#2c6489">⌸ עזרים ל‑Teams</div>
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;color:#5245a0">? שאלות נפוצות</div>
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;color:#9a5518">★ הטיפ השבועי</div>
+      </div>
+      <div style="background:linear-gradient(100deg,#5cc98a,#2bb9b6 48%,#3d9fdd);border-radius:26px;padding:34px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px">
+        <div style="color:#fff;font-family:'Rubik',sans-serif;font-weight:700;font-size:36px">הטיפ השבועי: תנו הקשר לפני שאתם מבקשים</div>
+        <div style="background:#fff;color:#0d5c6e;border-radius:999px;padding:18px 40px;font-family:'Rubik',sans-serif;font-weight:700;font-size:28px;white-space:nowrap">לטיפ השבוע</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="מאגר פרומפטים" data-screen-label="05" data-speaker-notes="ארבע קטגוריות. הראשונה מלמדת איך לכתוב פרומפט, השלוש האחרות הן פרומפטים מוכנים." dir="rtl" style="background:#fbfeff;padding:100px 130px;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 18px;color:#123a52">מאגר פרומפטים</h2>
+    <p style="font-size:32px;color:#4d7186;margin:0 0 50px">הסעיף הגדול והחשוב ביותר באתר.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px">
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:30px;padding:40px 34px">
+        <div style="width:78px;height:78px;border-radius:24px;background:#f4faf6;color:#2c6b53;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:24px">✎</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:34px;color:#123a52;margin-bottom:14px">תבנית לפרומפט כללי</div>
+        <div style="font-size:26px;line-height:1.6;color:#4d7186">מבנה, פורמט, דוגמאות טובות וטעויות נפוצות.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:30px;padding:40px 34px">
+        <div style="width:78px;height:78px;border-radius:24px;background:#eef6fc;color:#2c6489;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:24px">▦</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:34px;color:#123a52;margin-bottom:14px">פרומפטים לאקסל</div>
+        <div style="font-size:26px;line-height:1.6;color:#4d7186">נוסחאות, ניתוח, דוחות ותרשימים. שישה פרומפטים.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:30px;padding:40px 34px">
+        <div style="width:78px;height:78px;border-radius:24px;background:#f2f0fb;color:#5245a0;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:24px">◈</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:34px;color:#123a52;margin-bottom:14px">אימות נתונים</div>
+        <div style="font-size:26px;line-height:1.6;color:#4d7186">חריגים, כפילויות, הצלבות ובקרת איכות. שישה פרומפטים.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:30px;padding:40px 34px">
+        <div style="width:78px;height:78px;border-radius:24px;background:#eafaf3;color:#1d6e4c;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:24px">✦</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:34px;color:#123a52;margin-bottom:14px">מאגר כללי</div>
+        <div style="font-size:26px;line-height:1.6;color:#4d7186">כתיבה, סיכום, משימות, מצגות ותכנון. שמונה פרומפטים.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="כרטיס פרומפט" data-screen-label="06" data-speaker-notes="במקום טבלה ארוכה: כרטיס אחד לכל פרומפט, עם ארבעה חלקים קבועים וכפתור העתקה." dir="rtl" style="background:#fff;padding:100px 130px;display:flex;align-items:center;gap:70px">
+    <div style="flex:1">
+      <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 26px;color:#123a52">כרטיס במקום טבלה</h2>
+      <p style="font-size:33px;line-height:1.6;color:#4d7186;margin:0 0 44px;max-width:26ch">אותו מבנה בכל פרומפט. העובד יודע איפה להסתכל בלי לקרוא הכול.</p>
+      <div style="display:flex;flex-direction:column;gap:24px;font-size:31px;color:#274d61">
+        <div style="display:flex;gap:18px;align-items:center"><span style="color:#1d6e4c;font-size:30px">●</span>שם הפרומפט</div>
+        <div style="display:flex;gap:18px;align-items:center"><span style="color:#1d6e4c;font-size:30px">●</span>מטרה</div>
+        <div style="display:flex;gap:18px;align-items:center"><span style="color:#1d6e4c;font-size:30px">●</span>טיפ שימוש</div>
+        <div style="display:flex;gap:18px;align-items:center"><span style="color:#1d6e4c;font-size:30px">●</span>דוגמת תוצאה</div>
+        <div style="display:flex;gap:18px;align-items:center"><span style="color:#1d6e4c;font-size:30px">●</span>כפתור "העתק פרומפט"</div>
+      </div>
+    </div>
+    <div style="width:660px;background:#fff;border:2px solid #e6f1f4;border-radius:32px;padding:44px;box-shadow:0 20px 50px rgba(18,58,82,.1);flex:0 0 auto">
+      <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:38px;color:#123a52;margin-bottom:20px">בניית נוסחה מתיאור</div>
+      <div style="font-size:26px;color:#4d7186;line-height:1.55;margin-bottom:20px"><b style="color:#274d61">מטרה:</b> לקבל נוסחה מוכנה בלי לחפש את התחביר.</div>
+      <div style="background:#f6fbfc;border:2px dashed #cfe6ea;border-radius:20px;padding:26px;font-size:27px;line-height:1.6;color:#274d61;margin-bottom:20px">אני צריך נוסחת Excel שסופרת כמה שורות בעמודה C גדולות מ‑1000 רק אם בעמודה A מופיע "פעיל".</div>
+      <div style="font-size:26px;color:#4d7186;line-height:1.55;margin-bottom:20px"><b style="color:#274d61">טיפ שימוש:</b> ציינו את אותיות העמודות ואת שורת הכותרת.</div>
+      <div style="background:#f7faf5;border-right:5px solid #5cc98a;border-radius:0 18px 18px 0;padding:22px 26px;font-size:26px;line-height:1.5;color:#3d6076;margin-bottom:26px"><b style="color:#1d6e4c">דוגמת תוצאה:</b> ‎=COUNTIFS(A:A,"פעיל",C:C,">1000")‎</div>
+      <div style="text-align:center;padding:22px;border-radius:999px;background:linear-gradient(90deg,#5cc98a,#2bb9b6);color:#fff;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px">העתק פרומפט</div>
+    </div>
+  </section>
+
+  <section data-label="תבנית פרומפט" data-screen-label="07" data-speaker-notes="הקטגוריה שמלמדת. שלושה רכיבים, ואז דוגמאות טובות מול טעויות נפוצות." dir="rtl" style="background:#fbfeff;padding:100px 130px;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 18px;color:#123a52">תבנית לפרומפט כללי</h2>
+    <p style="font-size:32px;color:#4d7186;margin:0 0 44px">שלושה רכיבים. זה ההבדל בין תשובה כללית לתשובה שאפשר להשתמש בה.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:34px">
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:28px;padding:38px">
+        <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;margin-bottom:22px">1</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:36px;color:#123a52;margin-bottom:12px">מטרה</div>
+        <div style="font-size:27px;line-height:1.6;color:#4d7186">פועל אחד ברור: "נסח", "סכם", "השווה".</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:28px;padding:38px">
+        <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;margin-bottom:22px">2</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:36px;color:#123a52;margin-bottom:12px">הקשר</div>
+        <div style="font-size:27px;line-height:1.6;color:#4d7186">מי אתם, למי זה מיועד ומה הרקע.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:28px;padding:38px">
+        <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:30px;margin-bottom:22px">3</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:36px;color:#123a52;margin-bottom:12px">פורמט</div>
+        <div style="font-size:27px;line-height:1.6;color:#4d7186">אורך, שפה ומבנה: "עד 90 מילים, בנקודות".</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+      <div style="background:#fff;border:2px solid #d8eede;border-radius:28px;padding:36px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:32px;color:#1d6e4c;margin-bottom:18px">דוגמה טובה</div>
+        <div style="font-size:28px;line-height:1.6;color:#274d61">"אני רכזת ביחידה. נסח מייל קצר לצוות על שינוי מועד הישיבה, בטון אדיב, עד 90 מילים, בעברית."</div>
+      </div>
+      <div style="background:#fff;border:2px solid #f0dcd6;border-radius:28px;padding:36px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:32px;color:#a8442c;margin-bottom:18px">טעות נפוצה</div>
+        <div style="font-size:28px;line-height:1.6;color:#274d61">"תכתוב לי משהו על הפרויקט" — בלי קהל, בלי אורך ובלי פורמט אין למערכת ממה לעבוד.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="עזרים ל-Teams" data-screen-label="08" data-speaker-notes="שמונה כרטיסים גדולים עם אייקון, תמונה, הסבר וכפתור הדגמה. אין טקסט ארוך." dir="rtl" style="background:#fff;padding:90px 130px;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 18px;color:#123a52">עזרים ל‑Teams</h2>
+    <p style="font-size:32px;color:#4d7186;margin:0 0 44px">ארגז כלים מעשי: שמונה דברים ש‑Copilot עושה בתוך פגישה או צ׳אט.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">⌸</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">סיכום פגישה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">גם אם הצטרפתם באיחור.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">✓</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">נקודות פעולה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">החלטות וצעדים הבאים.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">☰</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">משימות מפגישה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">מי אחראי ועד מתי.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">❝</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">סיכום צ׳אט</div><div style="font-size:24px;line-height:1.5;color:#4d7186">שרשור ארוך בחמש שורות.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">◷</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">הכנה לפגישה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">שאלות ונקודות מראש.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">⎘</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">תמלול פגישה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">חיפוש לפי נושא או דובר.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">⇄</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">שינוי שפה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">סיכום בעברית לפגישה באנגלית.</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:32px;box-shadow:0 8px 22px rgba(18,58,82,.06)"><div style="font-size:38px;color:#2c6489;margin-bottom:16px">?</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:31px;color:#123a52;margin-bottom:10px">שאלות על פגישה</div><div style="font-size:24px;line-height:1.5;color:#4d7186">"מה הוחלט לגבי התקציב?"</div></div>
+    </div>
+  </section>
+
+  <section data-label="הדגמה" data-screen-label="09" data-speaker-notes="לחיצה על כרטיס פותחת חלון הדגמה: סרטון קצר, שלושה צעדים והערת מגבלה. פה צריך צילומי מסך אמיתיים." dir="rtl" style="background:#fbfeff;padding:100px 130px;display:flex;align-items:center;gap:70px">
+    <div style="flex:1">
+      <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 26px;color:#123a52">"צפה בהדגמה"</h2>
+      <p style="font-size:33px;line-height:1.6;color:#4d7186;margin:0 0 30px;max-width:26ch">לחיצה על כרטיס פותחת חלון קצר במקום לנווט לדף חדש. המשתמש נשאר בהקשר.</p>
+      <div style="background:#fffdf2;border:2px solid #f2e6bd;border-radius:24px;padding:30px 34px;font-size:28px;line-height:1.6;color:#6b5c2a;max-width:30ch"><b style="color:#7a6110">נדרש מכם:</b> GIF או סרטון קצר לכל אחד משמונת הכרטיסים.</div>
+    </div>
+    <div style="width:700px;background:#fff;border-radius:34px;box-shadow:0 30px 70px rgba(11,42,58,.22);overflow:hidden;flex:0 0 auto">
+      <div style="height:250px;border-bottom:1px solid #edf5f7;background:repeating-linear-gradient(135deg,#f6fcfc,#f6fcfc 14px,#ecf7f8 14px,#ecf7f8 28px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:22px;color:#3f7580;text-align:center;line-height:1.8">GIF · סיכום פגישה</div>
+      <div style="padding:38px 42px 42px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:40px;color:#123a52;margin-bottom:26px">סיכום פגישה</div>
+        <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:26px">
+          <div style="display:flex;gap:18px;align-items:flex-start"><div style="width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:22px;flex:0 0 auto">1</div><div style="font-size:27px;line-height:1.5;color:#274d61">פתחו את Copilot מסרגל הפגישה.</div></div>
+          <div style="display:flex;gap:18px;align-items:flex-start"><div style="width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:22px;flex:0 0 auto">2</div><div style="font-size:27px;line-height:1.5;color:#274d61">בקשו: "סכם את הפגישה בחמש נקודות בעברית".</div></div>
+          <div style="display:flex;gap:18px;align-items:flex-start"><div style="width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:22px;flex:0 0 auto">3</div><div style="font-size:27px;line-height:1.5;color:#274d61">העתיקו ושלחו למשתתפים.</div></div>
+        </div>
+        <div style="background:#f6fbfc;border:2px dashed #cfe6ea;border-radius:18px;padding:22px 26px;font-size:25px;line-height:1.55;color:#41697e"><b style="color:#0d5c6e">שימו לב:</b> זמין רק לפגישות שהוקלטו או תומללו.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="שאלות נפוצות" data-screen-label="10" data-speaker-notes="חיפוש למעלה, שש קטגוריות, אקורדיון. אותו תוכן קיים, מסודר לסריקה מהירה." dir="rtl" style="background:#fff;padding:100px 130px;display:flex;align-items:center;gap:70px">
+    <div style="flex:0 0 460px">
+      <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 26px;color:#123a52">שאלות נפוצות</h2>
+      <p style="font-size:33px;line-height:1.6;color:#4d7186;margin:0 0 34px">אותו תוכן, מסודר לסריקה: חיפוש, קטגוריות, ואקורדיון שנפתח במקום.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px">
+        <div style="padding:14px 26px;border-radius:999px;background:linear-gradient(90deg,#5cc98a,#2bb9b6);color:#fff;font-size:25px;font-weight:700">הכול</div>
+        <div style="padding:14px 26px;border-radius:999px;border:2px solid #dfeef1;color:#3d6076;font-size:25px;font-weight:600">התחלה</div>
+        <div style="padding:14px 26px;border-radius:999px;border:2px solid #dfeef1;color:#3d6076;font-size:25px;font-weight:600">פרטיות</div>
+        <div style="padding:14px 26px;border-radius:999px;border:2px solid #dfeef1;color:#3d6076;font-size:25px;font-weight:600">Excel</div>
+        <div style="padding:14px 26px;border-radius:999px;border:2px solid #dfeef1;color:#3d6076;font-size:25px;font-weight:600">Teams</div>
+        <div style="padding:14px 26px;border-radius:999px;border:2px solid #dfeef1;color:#3d6076;font-size:25px;font-weight:600">מגבלות</div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+      <div style="background:#fff;border:2px solid #e6f1f4;border-radius:26px;padding:32px 38px;box-shadow:0 8px 22px rgba(18,58,82,.05)">
+        <div style="font-size:22px;font-weight:700;color:#12798f;margin-bottom:8px">פרטיות ואבטחת מידע</div>
+        <div style="display:flex;align-items:center;gap:20px"><div style="flex:1;font-weight:700;font-size:34px;color:#123a52">איזה מידע אסור להזין?</div><div style="font-size:38px;color:#12889a">−</div></div>
+        <div style="margin-top:16px;font-size:28px;line-height:1.7;color:#41697e">אין להזין מידע רפואי, מידע אישי או דמוגרפי על מטופלים ועובדים, מידע עסקי רגיש או פרטי אשראי.</div>
+      </div>
+      <div style="background:#fff;border:2px solid #e6f1f4;border-radius:26px;padding:32px 38px">
+        <div style="font-size:22px;font-weight:700;color:#12798f;margin-bottom:8px">מגבלות המערכת</div>
+        <div style="display:flex;align-items:center;gap:20px"><div style="flex:1;font-weight:700;font-size:34px;color:#123a52">האם התשובות תמיד נכונות?</div><div style="font-size:38px;color:#12889a">+</div></div>
+      </div>
+      <div style="background:#fff;border:2px solid #e6f1f4;border-radius:26px;padding:32px 38px">
+        <div style="font-size:22px;font-weight:700;color:#12798f;margin-bottom:8px">עבודה עם Teams</div>
+        <div style="display:flex;align-items:center;gap:20px"><div style="flex:1;font-weight:700;font-size:34px;color:#123a52">למה אני לא רואה סיכום פגישה?</div><div style="font-size:38px;color:#12889a">+</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="הטיפ השבועי" data-screen-label="11" data-speaker-notes="זה מה שמחזיר אנשים לאתר. ארבעה פריטים שמתחלפים כל שבוע — טיפ, פרומפט, פיצ'ר וסיפור." dir="rtl" style="background:#fbfeff;padding:90px 130px;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:74px;margin:0 0 40px;color:#123a52">הטיפ השבועי</h2>
+    <div style="background:linear-gradient(115deg,#5cc98a,#2bb9b6 45%,#3d9fdd);border-radius:34px;padding:48px;display:flex;gap:44px;align-items:center;margin-bottom:28px;position:relative;overflow:hidden">
+      <div style="position:absolute;left:-70px;top:-70px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.12)"></div>
+      <div style="width:210px;height:250px;border-radius:28px;border:2px dashed rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:20px;color:rgba(255,255,255,.9);flex:0 0 auto;position:relative">מסקוט</div>
+      <div style="flex:1;position:relative">
+        <div style="display:inline-block;padding:8px 22px;border-radius:999px;background:rgba(255,255,255,.22);color:#fff;font-weight:700;font-size:24px;margin-bottom:18px">שבוע 37</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:800;font-size:54px;color:#fff;margin-bottom:16px">תנו הקשר לפני שאתם מבקשים</div>
+        <div style="font-size:30px;line-height:1.55;color:#fff;max-width:44ch">משפט אחד שאומר מי אתם, למי זה מיועד ובאיזה אורך משנה את התוצאה יותר מכל ניסוח מתוחכם.</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:28px;padding:34px"><div style="font-size:23px;font-weight:700;color:#12798f;margin-bottom:12px">פרומפט השבוע</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:32px;color:#123a52">הפרומפט שמתקן תשובה חלשה</div></div>
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:28px;padding:34px"><div style="font-size:23px;font-weight:700;color:#12798f;margin-bottom:12px">פיצ׳ר מומלץ</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:32px;color:#123a52">שאלות על פגישה שפספסתם</div></div>
+      <div style="background:linear-gradient(135deg,#f0fbf6,#eaf7fb);border:1px solid #dff0f3;border-radius:28px;padding:34px"><div style="font-size:23px;font-weight:700;color:#12798f;margin-bottom:12px">שימוש אמיתי מהעבודה</div><div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:32px;color:#123a52">שלוש שעות בשבוע חזרו</div></div>
+    </div>
+  </section>
+
+  <section data-label="הצעדים הבאים" data-screen-label="12" data-speaker-notes="מה חסר כדי להעלות לאוויר: נכסים גרפיים, תוכן אמיתי מהמיקרו-סייט הקיים, והחלטה על פלטפורמה." dir="rtl" style="background:#0d3346;padding:110px 130px;display:flex;flex-direction:column;justify-content:center;color:#fff">
+    <h2 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:76px;margin:0 0 20px">הצעדים הבאים</h2>
+    <p style="font-size:34px;color:#bcd8e3;margin:0 0 60px;max-width:46ch">האב-טיפוס מוכן. שלושה דברים חסרים כדי להפוך אותו לאתר חי.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px">
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:44px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:40px;margin-bottom:18px">נכסים גרפיים</div>
+        <div style="font-size:29px;line-height:1.6;color:#cfe4ec">קובצי המסקוט, לוגו כללית וצילומי מסך של Teams.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:44px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:40px;margin-bottom:18px">תוכן אמיתי</div>
+        <div style="font-size:29px;line-height:1.6;color:#cfe4ec">הפרומפטים והשאלות מהמיקרו-סייט הקיים, במקום הטיוטה שכתבתי.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:44px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:40px;margin-bottom:18px">פלטפורמה</div>
+        <div style="font-size:29px;line-height:1.6;color:#cfe4ec">SharePoint או Genially — ההחלטה משפיעה על החיפוש והאינטראקציות.</div>
+      </div>
+    </div>
+  </section>
+
+</x-import>
+
+</x-dc>
+</body>
+</html>

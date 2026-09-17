@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&amp;family=Assistant:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#ffffff;}
+  body{font-family:'Assistant',system-ui,sans-serif;color:#123a52;-webkit-font-smoothing:antialiased;}
+  *{box-sizing:border-box;}
+  a{color:#12798f;text-decoration:none;}
+  a:hover{color:#0d5c6e;}
+  ::selection{background:#bff0e6;}
+  input::placeholder{color:#6c8fa0;}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+</style>
+<meta name="ext-resource-dependency" content="assets/guide-rec-1.png" data-resource-id="guide-rec-1" />
+<meta name="ext-resource-dependency" content="assets/guide-rec-2.png" data-resource-id="guide-rec-2" />
+<meta name="ext-resource-dependency" content="assets/guide-lang.png" data-resource-id="guide-lang" />
+<meta name="ext-resource-dependency" content="assets/guide-copilot.png" data-resource-id="guide-copilot" />
+<meta name="ext-resource-dependency" content="assets/shot-sailpoint-menu.png" data-resource-id="shot-sailpoint-menu" />
+<meta name="ext-resource-dependency" content="assets/shot-sailpoint-form.png" data-resource-id="shot-sailpoint-form" />
+<meta name="ext-resource-dependency" content="assets/shot-sailpoint-perm.png" data-resource-id="shot-sailpoint-perm" />
+<meta name="ext-resource-dependency" content="assets/shot-sailpoint-submit.png" data-resource-id="shot-sailpoint-submit" />
+<meta name="ext-resource-dependency" content="assets/lang-1.png" data-resource-id="lang-1" />
+<meta name="ext-resource-dependency" content="assets/lang-2.png" data-resource-id="lang-2" />
+<meta name="ext-resource-dependency" content="assets/cop-1.png" data-resource-id="cop-1" />
+<meta name="ext-resource-dependency" content="assets/cop-2.png" data-resource-id="cop-2" />
+<meta name="ext-resource-dependency" content="assets/cop-3.png" data-resource-id="cop-3" />
+<meta name="ext-resource-dependency" content="assets/cop-4.png" data-resource-id="cop-4" />
+</helmet>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#ffffff"/>
+    <rect x="360" y="200" width="480" height="400" rx="60" fill="#2bb9b6"/>
+    <circle cx="510" cy="360" r="34" fill="#ffffff"/>
+    <circle cx="690" cy="360" r="34" fill="#ffffff"/>
+    <rect x="520" y="460" width="160" height="30" rx="15" fill="#ffffff"/>
+  </svg>
+</template>
+<div dir="rtl" style="min-height:100vh;background:#ffffff;position:relative;overflow-x:hidden">
+
+  <div style="position:absolute;top:-300px;left:-240px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(93,201,138,.24),rgba(61,159,221,.08) 60%,rgba(255,255,255,0) 72%);pointer-events:none"></div>
+  <div style="position:absolute;top:200px;right:-280px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at 60% 40%,rgba(43,185,182,.2),rgba(255,255,255,0) 70%);pointer-events:none"></div>
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid #e6f2f4">
+    
+  <div style="border-bottom:1px solid #f1f7f8">
+      <div style="max-width:1180px;margin:0 auto;padding:9px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+        <img src="assets/clalit-logo.webp" alt="כללית" style="height:34px;width:auto;display:block" />
+        <div style="background:#123a52;border-radius:12px;padding:5px 14px;display:flex;align-items:center"><img src="assets/squad-logo.webp" alt="סיירת ההדרכה" style="height:36px;width:auto;display:block" /></div>
+      </div>
+    </div>
+  <div style="max-width:1180px;margin:0 auto;padding:10px 28px 12px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:12px;cursor:pointer;flex:0 0 auto">
+        <div style="font-family:'Rubik',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em;background:linear-gradient(90deg,#5cc98a,#2bb9b6 45%,#3d9fdd);-webkit-background-clip:text;background-clip:text;color:transparent;direction:ltr">Copilot Chat</div>
+        <div style="width:1px;height:22px;background:#dceaee"></div>
+      </div>
+
+      <nav style="display:flex;gap:4px;flex:1 1 auto;flex-wrap:wrap;justify-content:flex-start">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+          <div onClick="{{ item.go }}" style="{{ item.style }}" style-hover="background:#effbf9">{{ item.label }}</div>
+        </sc-for>
+      </nav>
+    </div></header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main style="position:relative;max-width:1180px;margin:0 auto;padding:0 28px 80px">
+    
+
+    <section style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:30px;align-items:center;padding:56px 0 34px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#eafaf3;color:#1d6e4c;font-weight:700;font-size:13px;margin-bottom:16px">הקולגה החדשה שלכם ב‑Teams</div>
+        <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:clamp(34px,4.6vw,58px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em;text-wrap:balance">איך <span style="background:linear-gradient(90deg,#5cc98a,#2bb9b6 50%,#3d9fdd);-webkit-background-clip:text;background-clip:text;color:transparent">Copilot</span> יכול לעזור לך היום?</h1>
+        <div style="font-size:19px;line-height:1.6;color:#4d7186;margin:0;max-width:44ch;text-wrap:pretty"><div data-real-font-size="24px"><p dir="rtl" data-pm-slice="1 1 []">עזרי למידה ומדריכים לשימוש יעיל ואפקטיבי&nbsp;</p></div></div>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <img src="assets/mascot.png" alt="" style="width:100%;max-width:290px;height:auto;display:block;animation:floaty 6s ease-in-out infinite" />
+      </div>
+    </section><section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="4">
+        <div onClick="{{ t.go }}" style="{{ t.card }}" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(18,58,82,.14)">
+          <div style="{{ t.chip }}">{{ t.icon }}</div>
+          <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:23px;margin:18px 0 8px">{{ t.title }}</div>
+          <div style="font-size:16px;line-height:1.55;color:#4d7186;flex:1">{{ t.desc }}</div>
+          <div style="{{ t.ctaStyle }}">{{ t.cta }} ←</div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="margin-top:34px;background:linear-gradient(100deg,#5cc98a,#2bb9b6 48%,#3d9fdd);border-radius:30px;padding:32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:18px;min-width:280px;flex:1">
+        <img src="assets/mascot.png" alt="" style="width:74px;height:auto;display:block;flex:0 0 auto;filter:drop-shadow(0 6px 14px rgba(11,42,58,.25))" />
+        <div>
+          <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:4px">הטיפ השבועי</div>
+          <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:23px;color:#fff;line-height:1.3">{{ tipHeadline }}</div>
+        </div>
+      </div>
+      <div onClick="{{ goTip }}" style="padding:14px 30px;border-radius:999px;background:#fff;color:#0d5c6e;font-family:'Rubik',sans-serif;font-weight:700;font-size:16px;cursor:pointer;white-space:nowrap">לטיפ השבוע</div>
+    </section>
+
+    <div style="margin-top:22px;background:#fffdf2;border:1px solid #f2e6bd;border-radius:20px;padding:18px 24px;display:flex;gap:14px;align-items:flex-start">
+      <div style="font-size:17px">✦</div>
+      <div style="font-size:15px;line-height:1.6;color:#6b5c2a"><b style="color:#7a6110">חשוב:</b> אין להזין או להעלות מידע רפואי, מידע אישי או דמוגרפי על מטופלים ועובדים, מידע עסקי רגיש, פרטי אשראי או כל מידע שלא אושר להעלאה לענן.</div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isPromptsHub }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1180px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span><span>מאגר פרומפטים</span>
+    </div>
+    <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:40px;margin:0 0 8px">מאגר פרומפטים</h1>
+    <p style="margin:0 0 26px;font-size:18px;color:#4d7186;max-width:58ch">ארבע קטגוריות. כל פרומפט מוכן להעתקה, עם מטרה, טיפ שימוש ודוגמה לתוצאה.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+      <sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
+        <div onClick="{{ c.go }}" style="background:#fff;border:1px solid #e6f1f4;border-radius:24px;padding:26px;cursor:pointer;box-shadow:0 6px 18px rgba(18,58,82,.05);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease" style-hover="transform:translateY(-5px);box-shadow:0 18px 38px rgba(18,58,82,.13)">
+          <div style="{{ c.chip }}">{{ c.icon }}</div>
+          <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:21px;margin:16px 0 8px">{{ c.title }}</div>
+          <div style="font-size:15px;line-height:1.55;color:#4d7186;margin-bottom:16px">{{ c.desc }}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px">
+            <sc-for list="{{ c.topics }}" as="t" hint-placeholder-count="4">
+              <div style="padding:4px 11px;border-radius:999px;background:#f4fafb;border:1px solid #e3eff2;font-size:12.5px;color:#3d6076">{{ t.label }}</div>
+            </sc-for>
+          </div>
+          <div style="margin-top:auto;font-size:14px;font-weight:700;color:#12798f">{{ c.cta }} ←</div>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isTemplate }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1020px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span>
+      <span onClick="{{ goPrompts }}" style="cursor:pointer;color:#12798f;font-weight:600">מאגר פרומפטים</span><span>›</span><span>תבנית לפרומפט כללי</span>
+    </div>
+    <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:28px">
+      <div style="flex:1;min-width:280px">
+        <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:38px;margin:0 0 10px;line-height:1.15">תבנית לפרומפט כללי</h1>
+        <p style="margin:0;font-size:18px;color:#4d7186;line-height:1.6;max-width:52ch">שלושה רכיבים ומשפט אחד. זה כל ההבדל בין תשובה כללית לתשובה שאפשר להשתמש בה.</p>
+      </div>
+      <img src="assets/mascot.png" alt="" style="width:132px;height:auto;display:block;flex:0 0 auto" />
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:16px">
+      <sc-for list="{{ recipe }}" as="r" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:22px;padding:24px;box-shadow:0 6px 18px rgba(18,58,82,.05)">
+          <div style="width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:16px;margin-bottom:14px">{{ r.n }}</div>
+          <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;margin-bottom:6px">{{ r.title }}</div>
+          <div style="font-size:15px;line-height:1.6;color:#4d7186;margin-bottom:10px">{{ r.body }}</div>
+          <div style="font-size:14px;line-height:1.55;color:#3f7580;background:#f6fbfc;border:1px dashed #cfe6ea;border-radius:12px;padding:10px 12px">{{ r.example }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#f0fbf6,#eaf7fb);border:1px solid #dff0f3;border-radius:26px;padding:26px;margin-bottom:26px">
+      <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:21px;margin-bottom:6px">פורמט רצוי לתשובה</div>
+      <p style="margin:0 0 14px;font-size:16px;color:#4d7186;line-height:1.6">אם לא תבקשו פורמט, תקבלו טקסט רץ. שורה אחת בסוף הפרומפט חוסכת עריכה.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ formats }}" as="f" hint-placeholder-count="5">
+          <div style="padding:8px 16px;border-radius:999px;background:#fff;border:1px solid #dceaee;font-size:14px;color:#274d61">{{ f.label }}</div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:#fff;border:1px solid #d8eede;border-radius:24px;padding:24px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;color:#1d6e4c;margin-bottom:14px">דוגמאות טובות</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ goodExamples }}" as="g" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div style="color:#1d6e4c;font-weight:700;line-height:1.5">✓</div>
+              <div style="font-size:15px;line-height:1.6;color:#274d61">{{ g.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #f0dcd6;border-radius:24px;padding:24px">
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;color:#a8442c;margin-bottom:14px">טעויות נפוצות</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ mistakes }}" as="m" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div style="color:#a8442c;font-weight:700;line-height:1.5">✕</div>
+              <div style="font-size:15px;line-height:1.6;color:#274d61"><b>{{ m.text }}</b> — {{ m.fix }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1180px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span>
+      <span onClick="{{ goPrompts }}" style="cursor:pointer;color:#12798f;font-weight:600">מאגר פרומפטים</span><span>›</span><span>{{ catTitle }}</span>
+    </div>
+    <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:38px;margin:0 0 8px">{{ catTitle }}</h1>
+    <p style="margin:0 0 22px;font-size:18px;color:#4d7186;max-width:60ch">{{ catDesc }}</p>
+
+    <div style="display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #d9eef1;border-radius:999px;padding:9px 18px;box-shadow:0 8px 22px rgba(18,58,82,.06);max-width:560px;margin-bottom:22px">
+      <span style="font-size:17px;color:#4d7186">⌕</span>
+      <input value="{{ query }}" onInput="{{ onQuery }}" placeholder="חיפוש בקטגוריה…" style="flex:1;border:0;outline:0;font-family:'Assistant',sans-serif;font-size:17px;background:transparent;color:#123a52;min-width:0">
+    </div>
+
+    <div style="font-size:14px;color:#3d6076;margin-bottom:14px">{{ resultsLabel }}</div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px">
+      <sc-for list="{{ catPrompts }}" as="p" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:11px;box-shadow:0 6px 18px rgba(18,58,82,.05)">
+          <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;line-height:1.3">{{ p.title }}</div>
+          <div style="font-size:14.5px;color:#4d7186;line-height:1.55"><b style="color:#274d61">מטרה:</b> {{ p.goal }}</div>
+          <div style="background:#f6fbfc;border:1px dashed #cfe6ea;border-radius:14px;padding:14px;font-size:15px;line-height:1.6;color:#274d61;white-space:pre-line">{{ p.prompt }}</div>
+          <div style="display:flex;gap:9px;align-items:flex-start;font-size:14.5px;color:#4d7186;line-height:1.55"><span style="color:#12798f">✦</span><div><b style="color:#274d61">טיפ שימוש:</b> {{ p.tip }}</div></div>
+          <sc-if value="{{ p.hasExample }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#f7faf5;border-right:3px solid #5cc98a;border-radius:0 12px 12px 0;padding:11px 14px;font-size:14.5px;line-height:1.55;color:#3d6076"><b style="color:#1d6e4c">דוגמת תוצאה:</b> {{ p.example }}</div>
+          </sc-if>
+          <div onClick="{{ p.copy }}" style="{{ p.copyStyle }}">{{ p.copyLabel }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isTeams }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1180px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span><span>עזרים ל‑Teams</span>
+    </div>
+    <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-bottom:30px">
+      <div style="flex:1;min-width:300px">
+        <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:40px;margin:0 0 8px">עזרים ל‑Teams</h1>
+        <p style="margin:0;font-size:18px;color:#4d7186;max-width:58ch">כל מה שצריך כדי לעבוד בצורה יעילה יותר עם Teams ו‑Copilot.</p>
+      </div>
+      <div style="width:132px;height:160px;border-radius:22px;border:2px dashed #d3c9ea;background:repeating-linear-gradient(135deg,#faf8fd,#faf8fd 11px,#f3eefa 11px,#f3eefa 22px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:10px;color:#5245a0;text-align:center;line-height:1.7;flex:0 0 auto">מסקוט<br/>מכוון</div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#f6f2fd,#eaf7fb);border:1px solid #e2ddf3;border-radius:26px;padding:26px;margin-bottom:30px">
+      <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:21px;margin-bottom:4px">צריכים עזרה מהירה?</div>
+      <p style="margin:0 0 18px;font-size:16px;color:#4d7186">שלוש השאלות הנפוצות ביותר. לחיצה אחת פותחת את המדריך.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+        <sc-for list="{{ quickHelp }}" as="q" hint-placeholder-count="3">
+          <div onClick="{{ q.go }}" style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #e8eef5;border-radius:18px;padding:16px 18px;cursor:pointer" style-hover="border-color:#c9bdf0;background:#fcfaff">
+            <div style="width:38px;height:38px;border-radius:13px;background:#f2f0fb;color:#5245a0;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto">{{ q.icon }}</div>
+            <div style="flex:1;font-weight:700;font-size:16px;color:#274d61">{{ q.label }}</div>
+            <div style="color:#5245a0;font-size:18px">←</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px">
+      <sc-for list="{{ guideCards }}" as="c" hint-placeholder-count="3">
+        <div onClick="{{ c.open }}" style="background:#fff;border:1px solid #e6f1f4;border-radius:26px;overflow:hidden;cursor:pointer;box-shadow:0 6px 18px rgba(18,58,82,.05);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease" style-hover="transform:translateY(-5px);box-shadow:0 18px 38px rgba(18,58,82,.13)">
+          <div style="height:190px;border-bottom:1px solid #edf5f7;background:#f7f5fb;overflow:hidden;display:flex;align-items:flex-start;justify-content:center">
+            <img src="{{ c.poster }}" alt="{{ c.title }}" style="width:100%;height:auto;display:block" />
+          </div>
+          <div style="padding:22px;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:10px">
+              <div style="width:40px;height:40px;border-radius:14px;background:#f2f0fb;color:#5245a0;display:flex;align-items:center;justify-content:center;font-size:19px;flex:0 0 auto">{{ c.icon }}</div>
+              <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;line-height:1.25">{{ c.title }}</div>
+            </div>
+            <div style="font-size:15.5px;line-height:1.55;color:#4d7186;flex:1;margin-bottom:16px">{{ c.desc }}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <div style="font-size:13.5px;color:#3d6076;font-weight:600">{{ c.count }}</div>
+              <div style="padding:11px 22px;border-radius:999px;background:linear-gradient(90deg,#5cc98a,#2bb9b6);color:#fff;font-family:'Rubik',sans-serif;font-weight:700;font-size:15px">לצפייה במדריך</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isGuideDetail }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1000px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span>
+      <span onClick="{{ goTeams }}" style="cursor:pointer;color:#12798f;font-weight:600;white-space:nowrap">עזרים ל‑Teams</span><span>›</span><span style="white-space:nowrap">{{ guide.title }}</span>
+    </div>
+
+    <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px">
+      <div style="flex:1;min-width:280px">
+        <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:36px;margin:0 0 10px;line-height:1.2">{{ guide.title }}</h1>
+        <p style="margin:0;font-size:17.5px;color:#4d7186;line-height:1.6;max-width:54ch">{{ guide.desc }}</p>
+      </div>
+      <div style="display:flex;gap:12px;flex:0 0 auto">
+        <sc-for list="{{ guide.posters }}" as="p" hint-placeholder-count="1">
+          <div onClick="{{ p.zoom }}" style="display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer">
+            <div style="width:110px;border:1px solid #e6f1f4;border-radius:16px;overflow:hidden;background:#f7f5fb" style-hover="border-color:#c9bdf0">
+              <img src="{{ p.src }}" alt="{{ p.label }}" style="width:100%;height:auto;display:block" />
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#5245a0">{{ p.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px">
+      <sc-for list="{{ guide.progress }}" as="d" hint-placeholder-count="7">
+        <div style="{{ d.style }}"></div>
+      </sc-for>
+      <div style="font-size:14px;color:#3d6076;margin-inline-start:8px">{{ guide.countLabel }}</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ guide.steps }}" as="s" hint-placeholder-count="7">
+        <div style="background:#fff;border:1px solid #e6f1f4;border-radius:22px;padding:24px;box-shadow:0 4px 14px rgba(18,58,82,.04);display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:1 1 320px;min-width:260px;display:flex;align-items:flex-start;gap:14px">
+            <div style="width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#5cc98a,#2bb9b6);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:700;font-size:19px;flex:0 0 auto">{{ s.n }}</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:700;color:#12798f;margin-bottom:4px">{{ s.label }}</div>
+              <div style="font-size:18px;line-height:1.6;color:#274d61">{{ s.text }}</div>
+            </div>
+          </div>
+          <sc-if value="{{ s.hasImg }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ s.zoom }}" style="flex:0 1 42%;min-width:220px;border:1px solid #e6f1f4;border-radius:18px;overflow:hidden;cursor:zoom-in;background:#fbfdfe;box-shadow:0 8px 20px rgba(18,58,82,.08);transition:transform .18s ease,box-shadow .18s ease" style-hover="transform:scale(1.02);box-shadow:0 16px 34px rgba(18,58,82,.16)">
+              <img src="{{ s.img }}" alt="{{ s.text }}" style="max-width:100%;max-height:350px;width:auto;height:auto;display:block;margin:0 auto" />
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:22px;background:linear-gradient(115deg,#f0fbf6,#eaf7fb);border:1px solid #dff0f3;border-radius:24px;padding:24px;display:flex;gap:18px;align-items:center">
+      <img src="assets/mascot.png" alt="" style="width:80px;height:auto;display:block;flex:0 0 auto" />
+      <div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:18px;color:#0d5c6e;margin-bottom:5px">טיפ חשוב</div>
+        <div style="font-size:16.5px;line-height:1.6;color:#274d61">{{ guide.tip }}</div>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <div onClick="{{ guide.prev }}" style="{{ guide.prevStyle }}">→ מדריך קודם</div>
+      <div onClick="{{ goTeams }}" style="padding:13px 26px;border-radius:999px;border:2px solid #cfe6ea;color:#0d5c6e;font-family:'Rubik',sans-serif;font-weight:700;font-size:16px;cursor:pointer" style-hover="background:#f0fafb">חזרה לעזרים ל‑Teams</div>
+      <div onClick="{{ guide.next }}" style="{{ guide.nextStyle }}">מדריך הבא ←</div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1000px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span><span>שאלות נפוצות</span>
+    </div>
+    <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:40px;margin:0 0 20px">שאלות נפוצות</h1>
+
+    <div style="display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #d9eef1;border-radius:999px;padding:11px 20px;box-shadow:0 8px 22px rgba(18,58,82,.06);margin-bottom:18px">
+      <span style="font-size:17px;color:#4d7186">⌕</span>
+      <input value="{{ faqQuery }}" onInput="{{ onFaqQuery }}" placeholder="חיפוש בשאלות…" style="flex:1;border:0;outline:0;font-family:'Assistant',sans-serif;font-size:17px;background:transparent;color:#123a52;min-width:0">
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px">
+      <sc-for list="{{ faqChips }}" as="c" hint-placeholder-count="7">
+        <div onClick="{{ c.go }}" style="{{ c.style }}">{{ c.label }}</div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ faqList }}" as="f" hint-placeholder-count="6">
+        <div onClick="{{ f.toggle }}" style="background:#fff;border:1px solid #e6f1f4;border-radius:20px;padding:20px 24px;cursor:pointer;box-shadow:0 4px 14px rgba(18,58,82,.04)">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="flex:1">
+              <div style="font-size:12.5px;font-weight:700;color:#12798f;margin-bottom:3px">{{ f.cat }}</div>
+              <div style="font-weight:700;font-size:18px">{{ f.q }}</div>
+            </div>
+            <div style="font-size:22px;color:#12889a;line-height:1">{{ f.sign }}</div>
+          </div>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:12px;font-size:16.5px;line-height:1.7;color:#41697e;max-width:78ch">{{ f.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ faqEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:50px 20px;color:#4d7186;font-size:17px">לא נמצאו שאלות תואמות. נסו מילה אחרת.</div>
+    </sc-if>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isTip }}" hint-placeholder-val="{{ false }}">
+  <main style="position:relative;max-width:1080px;margin:0 auto;padding:32px 28px 80px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3d6076;margin-bottom:12px">
+      <span onClick="{{ goHome }}" style="cursor:pointer;color:#12798f;font-weight:600">דף הבית</span><span>›</span><span>הטיפ השבועי</span>
+    </div>
+
+    <section style="background:linear-gradient(115deg,#5cc98a,#2bb9b6 45%,#3d9fdd);border-radius:32px;padding:38px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-bottom:22px;position:relative;overflow:hidden">
+      <div style="position:absolute;left:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.12)"></div>
+      <div style="width:180px;height:220px;border-radius:24px;border:1.5px dashed rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:10px;color:rgba(255,255,255,.9);text-align:center;line-height:1.7;flex:0 0 auto;position:relative">מסקוט<br>מצביע</div>
+      <div style="flex:1;min-width:260px;position:relative">
+        <div style="display:inline-block;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.22);color:#fff;font-weight:700;font-size:13px;margin-bottom:12px">{{ tipWeek }}</div>
+        <h1 style="font-family:'Rubik',sans-serif;font-weight:800;font-size:34px;color:#fff;margin:0 0 10px;line-height:1.2">{{ tipHeadline }}</h1>
+        <p style="margin:0 0 18px;font-size:18px;line-height:1.6;color:#fff;max-width:52ch">{{ tipBody }}</p>
+        <div onClick="{{ goPrompts }}" style="display:inline-block;padding:13px 28px;border-radius:999px;background:#fff;color:#0d5c6e;font-family:'Rubik',sans-serif;font-weight:700;font-size:16px;cursor:pointer">נסו את זה עכשיו</div>
+      </div>
+    </section>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px">
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:24px;padding:24px;box-shadow:0 6px 18px rgba(18,58,82,.05);display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:13px;font-weight:700;color:#12798f">פרומפט השבוע</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px">{{ weekPrompt.title }}</div>
+        <div style="background:#f6fbfc;border:1px dashed #cfe6ea;border-radius:14px;padding:14px;font-size:15px;line-height:1.6;color:#274d61">{{ weekPrompt.prompt }}</div>
+        <div onClick="{{ weekPrompt.copy }}" style="{{ weekPrompt.copyStyle }}">{{ weekPrompt.copyLabel }}</div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e6f1f4;border-radius:24px;padding:24px;box-shadow:0 6px 18px rgba(18,58,82,.05)">
+        <div style="font-size:13px;font-weight:700;color:#12798f;margin-bottom:10px">פיצ׳ר מומלץ</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;margin-bottom:8px">{{ feature.title }}</div>
+        <div style="font-size:15.5px;line-height:1.65;color:#4d7186;margin-bottom:16px">{{ feature.body }}</div>
+        <div onClick="{{ goTeams }}" style="display:inline-block;padding:10px 22px;border-radius:999px;border:1.5px solid #bfe6e4;color:#0d5c6e;font-weight:700;font-size:14.5px;cursor:pointer" style-hover="background:#eafaf9">לעזרים ל‑Teams</div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#f0fbf6,#eaf7fb);border:1px solid #dff0f3;border-radius:24px;padding:24px">
+        <div style="font-size:13px;font-weight:700;color:#12798f;margin-bottom:10px">שימוש אמיתי מהעבודה</div>
+        <div style="font-family:'Rubik',sans-serif;font-weight:700;font-size:20px;margin-bottom:8px">{{ story.title }}</div>
+        <div style="font-size:15.5px;line-height:1.65;color:#41697e;margin-bottom:12px">{{ story.body }}</div>
+        <div style="font-size:14px;color:#3d6076;font-weight:600">{{ story.who }}</div>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:60;background:rgba(11,42,58,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:32px;cursor:zoom-out">
+      <div onClick="{{ stopClick }}" dir="rtl" style="background:#fff;border-radius:22px;max-width:1100px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 30px 70px rgba(11,42,58,.4);position:relative">
+        <div onClick="{{ closeLightbox }}" style="position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(18,58,82,.85);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;z-index:2">✕</div>
+        <img src="{{ lightboxSrc }}" alt="" style="width:100%;height:auto;display:block;border-radius:22px" />
+      </div>
+    </div>
+  </sc-if>
+
+  <footer style="position:relative;border-top:1px solid #e6f2f4;background:#fbfeff">
+    <div style="max-width:1180px;margin:0 auto;padding:26px 28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#3d6076">
+      <div><br></div>
+      <div>*מענה לתקלות — יש לפנות ליחידת המחשוב המקומי</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;homeTileHeight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:250,&quot;min&quot;:200,&quot;max&quot;:340,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;דף הבית&quot;}}">
+const CATS = {
+  excel: {
+    title:'פרומפטים לאקסל', icon:'▦', bg:'#eef6fc', fg:'#2c6489',
+    desc:'נוסחאות, ניתוח נתונים, דוחות ותרשימים — בלי לזכור תחביר.',
+    topics:['נוסחאות','ניתוח נתונים','סיכום טבלאות','תובנות','דוחות','תרשימים'],
+    prompts:[
+      {id:'e1',title:'בניית נוסחה מתיאור',goal:'לקבל נוסחה מוכנה בלי לחפש את התחביר.',prompt:'אני צריך נוסחת Excel שסופרת כמה שורות בעמודה C גדולות מ‑1000 רק אם בעמודה A מופיע "פעיל". הסבר בשורה אחת מה הנוסחה עושה.',tip:'ציינו את אותיות העמודות ואת שורת הכותרת — אחרת תקבלו נוסחה כללית.',example:'‎=COUNTIFS(A:A,"פעיל",C:C,">1000")‎ — סופרת שורות פעילות מעל 1000.'},
+      {id:'e2',title:'הסבר נוסחה קיימת',goal:'להבין נוסחה שמישהו אחר בנה.',prompt:'הסבר בעברית מה עושה הנוסחה הבאה, שלב אחר שלב, ומתי היא עלולה להחזיר שגיאה.',tip:'הדביקו את הנוסחה כמו שהיא, כולל הסוגריים.',example:'פירוק לשלושה שלבים, ואזהרה שהנוסחה תחזיר #DIV/0 כשהמכנה ריק.'},
+      {id:'e3',title:'ניתוח מגמות בטבלה',goal:'לזהות מה קורה בנתונים בלי לבנות גרפים.',prompt:'להלן טבלת נתונים חודשית. זהה שלוש מגמות בולטות, חריגה אחת שדורשת בדיקה, ושתי שאלות המשך שכדאי לשאול. הצג כטבלה.',tip:'הוסיפו מה מודדים בכל עמודה — שמות עמודות לבד לא תמיד ברורים.',example:'טבלה: מגמה, ראיה מהנתונים, רמת ודאות.'},
+      {id:'e4',title:'סיכום טבלה ארוכה',goal:'להפוך מאות שורות לפסקה שאפשר לשלוח.',prompt:'סכם את הטבלה הבאה בחמש נקודות למי שלא ראה את הנתונים: מה הכמויות העיקריות, מה בולט, ומה חסר.',tip:'בקשו במפורש "בלי להמציא מספרים שלא מופיעים בטבלה".',example:'חמש שורות תמצית עם המספרים המרכזיים.'},
+      {id:'e5',title:'בניית דוח תקופתי',goal:'לייצר מבנה דוח קבוע שחוזר כל חודש.',prompt:'בנה מבנה לדוח חודשי מהנתונים הבאים: כותרת, שלושה מדדי מפתח, טבלת פירוט, ופסקת סיכום למנהל. בעברית.',tip:'שמרו את המבנה שהתקבל וחזרו עליו כל חודש עם נתונים חדשים.',example:'שלד דוח מוכן להעתקה ל‑Word.'},
+      {id:'e6',title:'המלצה על תרשים מתאים',goal:'לבחור את סוג התרשים הנכון לנתונים.',prompt:'להלן מבנה הנתונים שלי. איזה סוג תרשים הכי מתאים להציג את השינוי לאורך זמן מול היעד, ולמה? פרט אילו עמודות לשים בכל ציר.',tip:'ציינו למי מציגים — הנהלה או צוות מקצועי.',example:'המלצה על גרף קווים עם קו יעד, והסבר איזה שדה בכל ציר.'}
+    ]
+  },
+  validation: {
+    title:'פרומפטים לאימות נתונים', icon:'◈', bg:'#f2f0fb', fg:'#5245a0',
+    desc:'חריגים, כפילויות, הצלבות ובקרת איכות לפני שמישהו מסתמך על הנתונים.',
+    topics:['בדיקת חריגים','הצלבות','זיהוי שגיאות','עקביות','כפילויות','בקרת איכות'],
+    prompts:[
+      {id:'v1',title:'איתור ערכים חריגים',goal:'למצוא מה נראה לא הגיוני לפני שמדווחים.',prompt:'עבור על הנתונים הבאים וסמן ערכים חריגים: מספרים שחורגים משמעותית מהטווח, תאריכים לא הגיוניים וערכים ריקים. לכל חריגה — למה היא חשודה.',tip:'הגדירו מהו טווח סביר בעיניכם, אחרת המערכת תנחש.',example:'רשימת שורות חשודות עם נימוק קצר לכל אחת.'},
+      {id:'v2',title:'זיהוי כפילויות',goal:'לתפוס רשומות כפולות שנרשמו בשמות שונים.',prompt:'זהה רשומות שנראות כפולות ברשימה הבאה, כולל כפילויות עם הבדלי כתיב, רווחים או סדר מילים. הצג זוגות עם רמת ודאות.',tip:'בקשו לא למחוק אלא רק לסמן — ההחלטה נשארת אצלכם.',example:'טבלת זוגות חשודים: רשומה א, רשומה ב, סיבה.'},
+      {id:'v3',title:'הצלבה בין שתי רשימות',goal:'לוודא שמה שמופיע כאן מופיע גם שם.',prompt:'השווה בין שתי הרשימות הבאות: מה מופיע רק ברשימה הראשונה, מה רק בשנייה, ומה מופיע בשתיהן עם ערך שונה.',tip:'ציינו מהו שדה המפתח שלפיו משווים.',example:'שלוש רשימות מופרדות: חסר כאן, חסר שם, לא תואם.'},
+      {id:'v4',title:'בדיקת עקביות בשדות',goal:'לוודא שכל השדות מלאים באותו פורמט.',prompt:'בדוק אם השדות הבאים עקביים: פורמט תאריך, פורמט מספר טלפון, וכתיב שמות יחידות. פרט כל חריגה מהפורמט הרווח.',tip:'הוסיפו דוגמה אחת לפורמט הרצוי — זה מייצב את הבדיקה.',example:'רשימת שורות עם הפורמט שנמצא מול הפורמט הצפוי.'},
+      {id:'v5',title:'בדיקת שלמות לפני דיווח',goal:'רשימת בקרה אחרונה לפני שליחה.',prompt:'בנה רשימת בקרה לבדיקת הקובץ הבא לפני דיווח: שדות חובה חסרים, סכומים שלא מסתדרים, ותאריכים מחוץ לתקופת הדיווח.',tip:'שמרו את רשימת הבקרה וחזרו עליה בכל דיווח.',example:'צ׳קליסט של שמונה סעיפים לסימון.'},
+      {id:'v6',title:'הסבר על שגיאה שהתקבלה',goal:'להבין למה החישוב לא עובד.',prompt:'הנתונים הבאים מחזירים תוצאה שלא הגיונית. הצע שלוש סיבות אפשריות לשגיאה ואיך לבדוק כל אחת.',tip:'תארו מה ציפיתם לקבל לעומת מה שהתקבל בפועל.',example:'שלוש השערות מדורגות, עם בדיקה מוצעת לכל אחת.'}
+    ]
+  },
+  general: {
+    title:'מאגר פרומפטים כללי', icon:'✦', bg:'#eafaf3', fg:'#1d6e4c',
+    desc:'כתיבה, סיכום, משימות, מצגות, תכנון, רעיונות ולמידה.',
+    topics:['כתיבה ועריכה','סיכום מסמכים','ניהול משימות','מצגות','תכנון','רעיונות','למידה'],
+    prompts:[
+      {id:'g1',title:'ניסוח מייל מקצועי',goal:'טיוטה ראשונה במקום דף ריק.',prompt:'נסח מייל קצר בעברית אל מנהל המחלקה, בטון מקצועי ואדיב, שמעדכן על עיכוב של שבוע בפרויקט, מסביר את הסיבה ומציע מועד חלופי. עד 120 מילים.',tip:'ציינו נמען, מטרה, אורך וטון.',example:'מייל בן שלוש פסקאות מוכן לעריכה אחרונה.'},
+      {id:'g2',title:'עריכה ושיפור טקסט',goal:'לקצר ולחדד טקסט שכבר כתבתם.',prompt:'ערוך את הטקסט הבא: קצר בשליש, חדד את המשפט הראשון, והסר חזרות. שמור על המשמעות ועל הטון.',tip:'בקשו לסמן מה שונה, כדי שתוכלו לאשר כל שינוי.',example:'גרסה מקוצרת עם רשימת השינויים.'},
+      {id:'g3',title:'סיכום מסמך ארוך',goal:'להבין מסמך בלי לקרוא אותו במלואו.',prompt:'סכם את המסמך הבא בשלוש רמות: משפט אחד, חמש נקודות, ופסקה למי שצריך להחליט. ציין מה לא נאמר במסמך.',tip:'"ציין מה לא נאמר" חושף פערים שקל לפספס.',example:'שלוש רמות סיכום ורשימת נושאים חסרים.'},
+      {id:'g4',title:'הפקת משימות מטקסט',goal:'להפוך דיון או מייל לרשימת מטלות.',prompt:'הוצא מהטקסט הבא רשימת משימות: מה צריך לעשות, מי אחראי אם צוין, ומה תאריך היעד. סמן משימות שחסר להן אחראי.',tip:'בקשו לא להמציא אחראים שלא הוזכרו.',example:'טבלת משימות עם עמודת "חסר מידע".'},
+      {id:'g5',title:'שלד מצגת',goal:'להפוך חומר גולמי למצגת.',prompt:'הפוך את החומר הבא לשלד מצגת של שבע שקופיות: לכל שקופית כותרת, שלוש נקודות והערה למציג. בעברית.',tip:'ציינו את משך ההצגה ואת הקהל.',example:'שבע שקופיות עם הערות מציג.'},
+      {id:'g6',title:'תכנון פרויקט קצר',goal:'לפרק יעד לשלבים ריאליים.',prompt:'פרק את היעד הבא לתוכנית עבודה: שלבים, תוצר לכל שלב, תלויות, וסיכון עיקרי אחד. הצג כטבלה.',tip:'ציינו את מסגרת הזמן והמשאבים שיש לכם.',example:'טבלת שלבים עם תוצרים ותלויות.'},
+      {id:'g7',title:'סיעור מוחות',goal:'לצאת מתקיעות עם כיוונים ראשוניים.',prompt:'הצע עשרה רעיונות ל[נושא]. לכל רעיון שורת הסבר אחת ורמת מורכבות: נמוכה, בינונית או גבוהה. דרג לפי השפעה מול מאמץ.',tip:'בקשו גם שני רעיונות "לא שגרתיים" — זה משנה את התפוקה.',example:'עשרה רעיונות מדורגים בטבלה.'},
+      {id:'g8',title:'למידה של נושא חדש',goal:'להיכנס לנושא לא מוכר בעשר דקות.',prompt:'הסבר לי את הנושא הבא בשלוש רמות: בשתי שורות, בפסקה, ועם דוגמה מעולם העבודה שלי. הוסף שלוש שאלות שכדאי שאדע לשאול.',tip:'בקשו גם "מה לא נכון לחשוב על הנושא הזה".',example:'הסבר מדורג עם שאלות המשך.'},
+      {id:'g9',title:'כתיבת פונקציה חדשה',goal:'יצירת קוד חדש בהתאם לדרישות מוגדרות.',prompt:'כתוב פונקציה חדשה בשפת Python.\n\nהדרישות:\n- הקלט הוא רשימת מספרים.\n- יש להחזיר רק מספרים ראשוניים.\n- הקוד צריך להיות קריא ויעיל.\n- הוסף הסבר קצר על אופן הפעולה.\n\nהצג את הפתרון בצורה ברורה ומקצועית.',tip:'ככל שתספקו דרישות מפורטות יותר, התוצאה תהיה מדויקת יותר.'},
+      {id:'g10',title:'איתור ותיקון שגיאות בקוד',goal:'איתור מקור הבעיה וקבלת קוד מתוקן.',prompt:'אני מקבל שגיאה בקוד הבא.\n\nנתח את הקוד ובצע את הפעולות הבאות:\n\n1. הסבר מה מקור השגיאה.\n2. ציין באיזו שורה נמצאה הבעיה.\n3. הצע גרסה מתוקנת של הקוד.\n4. הסבר מדוע התיקון פותר את התקלה.\n\nקוד לבדיקה:\n[הדבק כאן את הקוד]',tip:'מומלץ לצרף גם את הודעת השגיאה המלאה.'},
+      {id:'g11',title:'הסבר קוד קיים',goal:'הבנת קוד מורכב בצורה פשוטה.',prompt:'הסבר את הקוד הבא בצורה פשוטה וברורה.\n\nבצע:\n- פירוק לשלבים.\n- הסבר לכל חלק בקוד.\n- תיאור מטרת כל פונקציה.\n- דוגמא להרצת הקוד.\n\nקוד:\n[הדבק כאן קוד]',tip:'מומלץ במיוחד כשמקבלים קוד ממקור אחר ורוצים להבין אותו במהירות.'},
+      {id:'g12',title:'ניסוח מחדש של מייל',goal:'שיפור סגנון מקצועי של הודעת דוא"ל.',prompt:'שכתב את המייל הבא.\n\nהפוך אותו ל:\n- מקצועי\n- מנומס\n- ברור\n- תמציתי\n\nקהל היעד:\n[מנהל / לקוח / עובד]\n\nטקסט:\n[הדבק כאן את המייל]',tip:'ציינו למי מיועד המייל כדי לקבל תוצאה מדויקת יותר.'},
+      {id:'g13',title:'כתיבת פוסט או מאמר',goal:'יצירת תוכן מקצועי בנושא מוגדר.',prompt:'כתוב מאמר באורך של כ-500 מילים בנושא:\n\n[נושא]\n\nהנחיות:\n- כתוב כמומחה בתחום.\n- פתח בכותרת מושכת.\n- הצג בעיה מרכזית.\n- הצע שלושה פתרונות.\n- סיים בהמלצה או קריאה לפעולה.\n\nסגנון הכתיבה:\nמקצועי ונגיש.',tip:'כדאי לציין קהל יעד ספציפי כדי שהתוכן יהיה ממוקד יותר.'},
+      {id:'g14',title:'יצירת נוסחה מורכבת',goal:'בניית נוסחאות בהתאם לצורך עסקי.',prompt:'יש לי גיליון Excel.\n\nאני מבקש ליצור נוסחה שתבצע את הפעולה הבאה:\n\n[תיאור העסקי]\n\nהסבר:\n- באילו פונקציות השתמשת.\n- כיצד הנוסחה פועלת.\n- דוגמה לתוצאה.',tip:'ציינו את שמות העמודות כדי לקבל נוסחה מדויקת יותר.'},
+      {id:'g15',title:'ניתוח נתונים והפקת תובנות',goal:'זיהוי מגמות ומסקנות עסקיות מתוך נתונים.',prompt:'נתח את הנתונים המצורפים.\n\nהצג:\n- שלוש מגמות מרכזיות.\n- חריגים בנתונים.\n- תובנות עסקיות.\n- שתי המלצות לשיפור ביצועים.\n\nהצג את הממצאים בטבלה מסודרת.',tip:'יעיל במיוחד לדוחות מכירות, שירות או ביצועים.'},
+      {id:'g16',title:'סיכום פרוטוקול פגישה',goal:'סיכום פגישות וחילוץ משימות.',prompt:'סכם את תמלול הפגישה הבא.\n\nהפק:\n- עיקרי הדברים.\n- החלטות שהתקבלו.\n- משימות לביצוע.\n- אחראים לביצוע.\n- תאריכי יעד במידת הצורך.\n\nטקסט הפגישה:\n[הדבק כאן]',tip:'עובד מצוין עם תמלולים מ‑Teams.'},
+      {id:'g17',title:'בניית תוכנית עבודה לפרויקט',goal:'הכנת תכנון מסודר לפרויקט.',prompt:'אני מתחיל פרויקט חדש.\n\nצור תוכנית עבודה ל-4 שבועות.\n\nכלול:\n- אבני דרך.\n- משימות מרכזיות.\n- סיכונים אפשריים.\n- המלצות לניהול הפרויקט.\n\nהצג בטבלה מסודרת לפי שבועות.',tip:'אפשר לצרף מטרות ויעדים לקבלת תוכנית מותאמת יותר.'},
+      {id:'g18',title:'הסבר נושא מורכב בצורה פשוטה',goal:'למידה מהירה של נושאים חדשים.',prompt:'הסבר את הנושא הבא בצורה פשוטה.\n\nכאילו אתה מסביר אותו לילד בן 10.\n\nהשתמש:\n- בדוגמאות.\n- בהשוואות מחיי היומיום.\n- בשפה פשוטה.\n\nנושא:\n[הכנס נושא]',tip:'מתאים במיוחד ללמידת מושגים טכנולוגיים או עסקיים מורכבים.'}
+    ]
+  }
+};
+
+const GUIDES = [
+  {
+    id:'rec', icon:'\u{1F3A5}', title:'קבלת הרשאות להקלטה ב‑Teams',
+    desc:'מדריך לקבלת הרשאת הקלטה במערכת Teams דרך מערכת SailPoint.',
+    poster:'assets/guide-rec-1.png',
+    posters:[{src:'assets/guide-rec-1.png',label:'חלק 1'},{src:'assets/guide-rec-2.png',label:'חלק 2'}],
+    tip:'טיפ: אפשר להגיש את הבקשה עבור עצמכם או עבור עובד אחר ביחידה — בחרו את העובד הנכון בשלב 4.',
+    steps:[
+      {text:'היכנסו למערכת SailPoint IdentityIQ.'},
+      {text:'הזינו שם משתמש או מספר עובד.'},
+      {text:'בתפריט הראשי היכנסו ל"ניהול עצמי" ולאחר מכן ל"בקשת הרשאות".', img:'assets/shot-sailpoint-menu.png'},
+      {text:'בחרו את העובד עבורו תוגש הבקשה.'},
+      {text:'בשדה "בחירת מערכת" בחרו: מערכת הקלטות Teams.', img:'assets/shot-sailpoint-form.png'},
+      {text:'בשדה תיאור ההרשאה בחרו: הרשאה להקלטות במערכת Teams.', img:'assets/shot-sailpoint-perm.png'},
+      {text:'הוסיפו סיבת בקשה בשדה הטקסט ולאחר מכן לחצו "הגש בקשה".', img:'assets/shot-sailpoint-submit.png'}
+    ]
+  },
+  {
+    id:'lang', icon:'\u{1F30D}', title:'שינוי שפה ב‑Teams',
+    desc:'מדריך לשינוי שפת הממשק של Teams לעברית.',
+    poster:'assets/guide-lang.png',
+    tip:'טיפ: אם השפה לא משתנה, ודאו ש"עקוב אחר הגדרות מערכת ההפעלה" כבוי — אחרת Teams מתעלם מהבחירה שלכם.',
+    steps:[
+      {text:'פתחו את Microsoft Teams ולחצו על שלוש הנקודות בפינה העליונה.'},
+      {text:'בחרו: הגדרות.', img:'assets/lang-1.png'},
+      {text:'עברו למסך: שפה ואזור.'},
+      {text:'ודאו שהאפשרות "עקוב אחר הגדרות מערכת ההפעלה" כבויה.'},
+      {text:'בחרו: עברית (ישראל).', img:'assets/lang-2.png'},
+      {text:'שימרו את ההגדרות.'},
+      {text:'הפעילו מחדש את Teams.'}
+    ]
+  },
+  {
+    id:'copilot', icon:'\u{1F916}', title:'הוספת Copilot ל‑Teams',
+    desc:'הוספת Copilot לסרגל הצדדי לקבלת גישה מהירה.',
+    poster:'assets/guide-copilot.png',
+    tip:'טיפ: לאחר הוספת Copilot ל‑Teams מומלץ להצמיד אותו לסרגל הצדדי לגישה מהירה.',
+    steps:[
+      {text:'פתחו את אפליקציית Teams.'},
+      {text:'לחצו על "אפליקציות" בסרגל הניווט הימני.', img:'assets/cop-1.png'},
+      {text:'חפשו: Copilot ולחצו "פתח".', img:'assets/cop-2.png'},
+      {text:'עם פתיחת Copilot לחצו על סמל Copilot.', img:'assets/cop-3.png'},
+      {text:'בחרו "הצמד" כדי לקבע את Copilot לסרגל הצדדי.', img:'assets/cop-4.png'},
+      {text:'ודאו שסמל Copilot מופיע כעת בתפריט הצדדי. כעת ניתן להתחיל לעבוד עם Copilot.'}
+    ]
+  }
+];
+
+const FAQ = [
+  {cat:'התחלה עם Copilot',q:'מה זה בעצם Copilot Chat?',a:'עוזר מבוסס בינה מלאכותית שנמצא בתוך Teams. אפשר לבקש ממנו לנסח, לסכם, לנתח ולהציע רעיונות — בשיחה רגילה, בעברית.'},
+  {cat:'התחלה עם Copilot',q:'איך מתחילים? צריך התקנה?',a:'לא. פותחים את Teams ומחפשים את Copilot Chat בתפריט הצד. אם הוא אינו מופיע, פנו ליחידת המחשוב המקומי.'},
+  {cat:'התחלה עם Copilot',q:'אפשר לעבוד בעברית?',a:'כן. אפשר לכתוב ולקבל תשובות בעברית. אם התשובה חוזרת באנגלית, בקשו במפורש "ענה בעברית".'},
+  {cat:'פרטיות ואבטחת מידע',q:'איזה מידע אסור להזין?',a:'אין להזין מידע רפואי, מידע אישי או דמוגרפי על מטופלים ועובדים, מידע עסקי רגיש, פרטי אשראי או כל מידע שלא אושר להעלאה לענן.'},
+  {cat:'פרטיות ואבטחת מידע',q:'מי יכול לראות את מה שכתבתי?',a:'השיחות שלכם אישיות ואינן משותפות עם עובדים אחרים. עם זאת, ההנחיה לגבי סוגי המידע האסורים בתוקף בכל מקרה. בספק — בדקו מול יחידת המחשוב.'},
+  {cat:'עבודה עם Excel',q:'Copilot יכול לבנות לי נוסחאות?',a:'כן. תארו במילים מה הנוסחה צריכה לעשות וציינו את אותיות העמודות. תקבלו נוסחה מוכנה להדבקה והסבר קצר. בדקו את התוצאה על כמה שורות לפני שתסתמכו עליה.'},
+  {cat:'עבודה עם Excel',q:'אפשר להעלות קובץ נתונים?',a:'אפשר להדביק טבלה כטקסט. אין להעלות קבצים שמכילים מידע רגיש, אישי או רפואי — גם אם הם נראים טכניים.'},
+  {cat:'עבודה עם Teams',q:'למה אני לא רואה סיכום פגישה?',a:'סיכום זמין רק לפגישות שהוקלטו או תומללו, ובהתאם להרשאות המארגן. אם ההקלטה לא הופעלה, אין ממה להפיק סיכום.'},
+  {cat:'עבודה עם Teams',q:'אפשר לשאול שאלות על פגישה שפספסתי?',a:'כן, אם הפגישה תומללה. אפשר לשאול "מה הוחלט לגבי X" ולקבל תשובה עם הפניה לרגע בפגישה.'},
+  {cat:'מגבלות המערכת',q:'האם התשובות תמיד נכונות?',a:'לא. Copilot עלול לטעות. הוא מצוין כשותף לחשיבה וכנקודת פתיחה, אבל את התוצרים יש לבדוק ולהפעיל שיקול דעת מקצועי.'},
+  {cat:'מגבלות המערכת',q:'מה ההבדל בין Copilot Chat לבין Copilot בתוך Word או Excel?',a:'Copilot Chat הוא שיחה כללית בתוך Teams. הרישיון המלא משלב את Copilot בתוך היישומים עצמם. מה שזמין לכם היום הוא Copilot Chat.'},
+  {cat:'כתיבת פרומפטים',q:'למה התשובה שקיבלתי כללית מדי?',a:'כנראה חסר הקשר. הוסיפו מי אתם, למי מיועדת התשובה, ובאיזה אורך ופורמט אתם רוצים אותה. שלושת אלה משנים את התוצאה יותר מכל דבר אחר.'},
+  {cat:'כתיבת פרומפטים',q:'אפשר להמשיך לתקן את התשובה?',a:'כן, וזו הדרך הנכונה לעבוד. בקשו "קצר יותר", "בטון רשמי יותר", "הוסף דוגמה" — כל בקשה מתבססת על הקודמת.'}
+];
+
+const RECIPE = [
+  {n:'1',title:'מטרה',body:'מה אתם רוצים לקבל בסוף. פועל אחד ברור.',example:'"נסח מייל", "סכם", "השווה בין".'},
+  {n:'2',title:'הקשר',body:'מי אתם, למי זה מיועד ומה הרקע הרלוונטי.',example:'"אני רכזת ביחידה, המייל מיועד לצוות של 12 עובדים".'},
+  {n:'3',title:'פורמט',body:'אורך, שפה ומבנה התשובה.',example:'"עד 90 מילים, בעברית, בנקודות".'}
+];
+
+const FORMATS = ['טבלה','נקודות','פסקה אחת','עד 100 מילים','בעברית','טון רשמי','שלוש חלופות'];
+
+const GOOD = [
+  {text:'"אני רכזת ביחידה. נסח מייל קצר לצוות על שינוי מועד הישיבה, בטון אדיב, עד 90 מילים, בעברית."'},
+  {text:'"סכם את המסמך בחמש נקודות למי שצריך להחליט, וציין מה לא נאמר בו."'},
+  {text:'"השווה בין שתי האפשרויות בטבלה: יתרונות, חסרונות, עלות, סיכון עיקרי."'}
+];
+
+const MISTAKES = [
+  {text:'בקשה כללית מדי',fix:'"תכתוב לי משהו על הפרויקט" לא נותן כיוון. אמרו מה, למי ובאיזה אורך.'},
+  {text:'בלי פורמט',fix:'בלי בקשה מפורשת תקבלו טקסט רץ. בקשו טבלה, נקודות או מספר מילים.'},
+  {text:'פרומפט ענק אחד',fix:'עדיף להתחיל קטן ולתקן בשיחה: "קצר יותר", "הוסף דוגמה".'},
+  {text:'הסתמכות בלי בדיקה',fix:'Copilot עלול לטעות. את המספרים והעובדות בדקו תמיד מול המקור.'}
+];
+
+const TIP = {
+  week:'שבוע 37',
+  headline:'תנו הקשר לפני שאתם מבקשים',
+  body:'רוב התשובות הכלליות נובעות מבקשה כללית. משפט אחד שאומר מי אתם, למי זה מיועד ובאיזה אורך — משנה את התוצאה יותר מכל ניסוח מתוחכם.',
+  prompt:{id:'tipp',title:'הפרומפט שמתקן תשובה חלשה',prompt:'התשובה כללית מדי. אני רכזת ביחידה, הקורא הוא מנהל שאין לו רקע בנושא, והתשובה צריכה להיות עד 100 מילים בעברית ובנקודות. נסח מחדש.'},
+  feature:{title:'שאלות על פגישה שפספסתם',body:'אם הפגישה תומללה, אפשר פשוט לשאול "מה הוחלט לגבי התקציב?" ולקבל תשובה עם הפניה לרגע שבו זה נאמר. חוסך צפייה בהקלטה שלמה.'},
+  story:{title:'שלוש שעות בשבוע חזרו',body:'צוות שסיכם ידנית ארבע ישיבות שבועיות עבר לסיכום אוטומטי עם בדיקה של חמש דקות. הסיכום נשלח באותו יום במקום ביום למחרת.',who:'צוות תפעול, יחידה מרכזית'}
+};
+
+const CHIP_ON = 'padding:8px 16px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(90deg,#5cc98a,#2bb9b6);color:#fff;border:1.5px solid transparent';
+const CHIP_OFF = 'padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;background:#fff;color:#3d6076;border:1.5px solid #dfeef1';
+
+function ASSET(p){
+  if (!p) return p;
+  const id = String(p).split('/').pop().replace(/\.png$/, '');
+  const r = (typeof window !== 'undefined' && window.__resources) ? window.__resources[id] : null;
+  return r || p;
+}
+
+class Component extends DCLogic {
+  state = {screen:'home', cat:'excel', query:'', faqQuery:'', faqCat:'הכל', copied:null, faqOpen:{}, guide:0, lightbox:null};
+
+  go(screen){ return () => { this.setState({screen, query:''}); window.scrollTo(0,0); }; }
+  openCat(key){ return () => { this.setState({screen:'category', cat:key, query:''}); window.scrollTo(0,0); }; }
+
+  copyPrompt(p){
+    return (e) => {
+      if (e && e.stopPropagation) e.stopPropagation();
+      try { navigator.clipboard.writeText(p.prompt); } catch(err){}
+      this.setState({copied:p.id});
+      clearTimeout(this._t);
+      this._t = setTimeout(()=>this.setState({copied:null}), 1600);
+    };
+  }
+
+  copyStyle(id){
+    return 'margin-top:auto;text-align:center;padding:12px;border-radius:999px;color:#fff;font-family:\'Rubik\',sans-serif;font-weight:700;font-size:15px;cursor:pointer;background:' +
+      (this.state.copied===id ? '#1d6e4c' : 'linear-gradient(90deg,#5cc98a,#2bb9b6)');
+  }
+
+  openGuide(i){ return () => { this.setState({screen:'guideDetail', guide:i, lightbox:null}); window.scrollTo(0,0); }; }
+  zoom(src){ return (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({lightbox:src}); }; }
+  noop(){}
+
+  navStyle(active){
+    return 'padding:10px 18px;border-radius:999px;font-size:16px;font-weight:' + (active?'700':'500') +
+      ';cursor:pointer;white-space:nowrap;color:' + (active?'#0d5c6e':'#3d6076') +
+      ';background:' + (active?'#e9f7f9':'transparent');
+  }
+
+  toggleFaq(k){
+    return () => this.setState(s => ({faqOpen: Object.assign({}, s.faqOpen, {[k]: !s.faqOpen[k]})}));
+  }
+
+  renderVals(){
+    const s = this.state;
+    const cat = CATS[s.cat] || CATS.excel;
+    const q = s.query.trim();
+    const fq = s.faqQuery.trim();
+    const tileScale = this.props.homeTileHeight ?? 250;
+    const gd = GUIDES[s.guide] || GUIDES[0];
+    const navBtn = 'padding:13px 26px;border-radius:999px;background:#123a52;color:#fff;font-family:\'Rubik\',sans-serif;font-weight:700;font-size:16px;cursor:pointer';
+
+    const navDefs = [
+      {label:'מאגר פרומפטים', screens:['prompts','category','template'], go:this.go('prompts')},
+      {label:'עזרים ל‑Teams', screens:['teams','guideDetail'], go:this.go('teams')},
+      {label:'שאלות נפוצות', screens:['faq'], go:this.go('faq')},
+      {label:'הטיפ השבועי', screens:['tip'], go:this.go('tip')}
+    ];
+
+    const tileDefs = [
+      {icon:'✦',title:'מאגר פרומפטים',desc:'ארבע קטגוריות של פרומפטים מוכנים להעתקה: תבנית, אקסל, אימות נתונים וכללי.',cta:'לכל הפרומפטים',bg:'#eafaf3',fg:'#1d6e4c',go:this.go('prompts')},
+      {icon:'⌸',title:'עזרים ל‑Teams',desc:'שמונה שימושים בתוך פגישה או צ׳אט, כל אחד עם הדגמה קצרה.',cta:'לארגז הכלים',bg:'#eef6fc',fg:'#2c6489',go:this.go('teams')},
+      {icon:'?',title:'שאלות נפוצות',desc:'הרשאות, פרטיות, מגבלות ומה עושים כשמשהו לא עובד.',cta:'לשאלות',bg:'#f2f0fb',fg:'#5245a0',go:this.go('faq')},
+      {icon:'★',title:'הטיפ השבועי',desc:'טיפ, פרומפט השבוע, פיצ׳ר מומלץ ושימוש אמיתי מהעבודה.',cta:'לטיפ',bg:'#fdf2e8',fg:'#9a5518',go:this.go('tip')}
+    ];
+
+    const catList = [
+      {key:'template',title:'תבנית לפרומפט כללי',icon:'✎',bg:'#f4faf6',fg:'#2c6b53',desc:'מבנה מומלץ, פורמט תשובה, דוגמאות טובות וטעויות נפוצות.',topics:['מבנה','מטרה','הקשר','פורמט','דוגמאות','טעויות'],cta:'לתבנית',go:this.go('template')},
+      {key:'excel',title:CATS.excel.title,icon:CATS.excel.icon,bg:CATS.excel.bg,fg:CATS.excel.fg,desc:CATS.excel.desc,topics:CATS.excel.topics,cta:'6 פרומפטים',go:this.openCat('excel')},
+      {key:'validation',title:CATS.validation.title,icon:CATS.validation.icon,bg:CATS.validation.bg,fg:CATS.validation.fg,desc:CATS.validation.desc,topics:CATS.validation.topics,cta:'6 פרומפטים',go:this.openCat('validation')},
+      {key:'general',title:CATS.general.title,icon:CATS.general.icon,bg:CATS.general.bg,fg:CATS.general.fg,desc:CATS.general.desc,topics:CATS.general.topics,cta:'18 פרומפטים',go:this.openCat('general')}
+    ];
+
+    const catPrompts = cat.prompts.filter(p => !q || (p.title + p.goal + p.prompt).indexOf(q) > -1);
+
+    const faqCats = ['הכל','התחלה עם Copilot','פרטיות ואבטחת מידע','עבודה עם Excel','עבודה עם Teams','מגבלות המערכת','כתיבת פרומפטים'];
+    const faqFiltered = FAQ.map((f, i) => ({f, i}))
+      .filter(({f}) => (s.faqCat==='הכל' || f.cat===s.faqCat) && (!fq || (f.q + f.a).indexOf(fq) > -1));
+
+    return {
+      nav: navDefs.map(n => ({label:n.label, style:this.navStyle(n.screens.indexOf(s.screen) > -1), go:n.go})),
+      isHome: s.screen==='home',
+      isPromptsHub: s.screen==='prompts',
+      isTemplate: s.screen==='template',
+      isCategory: s.screen==='category',
+      isTeams: s.screen==='teams',
+      isGuideDetail: s.screen==='guideDetail',
+      isFaq: s.screen==='faq',
+      isTip: s.screen==='tip',
+      goHome: this.go('home'),
+      goPrompts: this.go('prompts'),
+      goTeams: this.go('teams'),
+      goTip: this.go('tip'),
+
+      tiles: tileDefs.map(t => ({
+        icon:t.icon, title:t.title, desc:t.desc, cta:t.cta, go:t.go,
+        card:'background:#fff;border:1px solid #e6f1f4;border-radius:26px;padding:28px;min-height:'+tileScale+'px;cursor:pointer;display:flex;flex-direction:column;box-shadow:0 8px 22px rgba(18,58,82,.06);transition:transform .18s ease,box-shadow .18s ease',
+        chip:'width:54px;height:54px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:25px;background:'+t.bg+';color:'+t.fg,
+        ctaStyle:'margin-top:18px;font-family:\'Rubik\',sans-serif;font-weight:700;font-size:15px;color:'+t.fg
+      })),
+      tipHeadline: TIP.headline,
+      tipWeek: TIP.week,
+      tipBody: TIP.body,
+
+      categories: catList.map(c => ({
+        title:c.title, desc:c.desc, cta:c.cta, icon:c.icon, go:c.go,
+        topics: c.topics.map(t => ({label:t})),
+        chip:'width:50px;height:50px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:23px;background:'+c.bg+';color:'+c.fg
+      })),
+
+      recipe: RECIPE,
+      formats: FORMATS.map(f => ({label:f})),
+      goodExamples: GOOD,
+      mistakes: MISTAKES,
+
+      catTitle: cat.title,
+      catDesc: cat.desc,
+      query: s.query,
+      onQuery: (e) => this.setState({query:e.target.value}),
+      resultsLabel: catPrompts.length + ' פרומפטים',
+      catPrompts: catPrompts.map(p => Object.assign({}, p, {
+        hasExample: !!p.example,
+        copy:this.copyPrompt(p),
+        copyLabel: s.copied===p.id ? 'הועתק ✓' : 'העתק פרומפט',
+        copyStyle: this.copyStyle(p.id)
+      })),
+
+      guideCards: GUIDES.map((gd, i) => ({
+        icon:gd.icon, title:gd.title, desc:gd.desc, poster:ASSET(gd.poster),
+        count: gd.steps.length + ' שלבים',
+        open: this.openGuide(i)
+      })),
+      quickHelp: [
+        {icon:'\u{1F3A5}', label:'קבלת הרשאת הקלטה', go:this.openGuide(0)},
+        {icon:'\u{1F30D}', label:'שינוי שפה', go:this.openGuide(1)},
+        {icon:'\u{1F916}', label:'הוספת Copilot', go:this.openGuide(2)}
+      ],
+      guide: {
+        title: gd.title, desc: gd.desc, poster: ASSET(gd.poster),
+        countLabel: gd.steps.length + ' שלבים',
+        tip: gd.tip,
+        posters: (gd.posters || [{src:gd.poster, label:'המדריך המלא'}]).map(p => ({src:ASSET(p.src), label:p.label, zoom:this.zoom(ASSET(p.src))})),
+        progress: gd.steps.map(() => ({style:'flex:1;height:6px;border-radius:99px;background:linear-gradient(90deg,#7b6bc4,#5245a0)'})),
+        steps: gd.steps.map((st, n) => ({
+          n:n+1, label:'שלב ' + (n+1), text:st.text, img:ASSET(st.img) || '', hasImg: !!st.img, zoom: st.img ? this.zoom(ASSET(st.img)) : this.noop
+        })),
+        prev: this.openGuide((s.guide + GUIDES.length - 1) % GUIDES.length),
+        next: this.openGuide((s.guide + 1) % GUIDES.length),
+        prevStyle: navBtn, nextStyle: navBtn
+      },
+      lightboxOpen: !!s.lightbox,
+      lightboxSrc: s.lightbox || '',
+      closeLightbox: () => this.setState({lightbox:null}),
+      stopClick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+
+      faqQuery: s.faqQuery,
+      onFaqQuery: (e) => this.setState({faqQuery:e.target.value}),
+      faqChips: faqCats.map(c => ({label:c, style: s.faqCat===c ? CHIP_ON : CHIP_OFF, go: () => this.setState({faqCat:c})})),
+      faqList: faqFiltered.map(({f, i}) => ({
+        cat:f.cat, q:f.q, a:f.a,
+        open: !!s.faqOpen[i], sign: s.faqOpen[i] ? '−' : '+', toggle:this.toggleFaq(i)
+      })),
+      faqEmpty: faqFiltered.length === 0,
+
+      weekPrompt: {
+        title:TIP.prompt.title, prompt:TIP.prompt.prompt,
+        copy:this.copyPrompt(TIP.prompt),
+        copyLabel: s.copied===TIP.prompt.id ? 'הועתק ✓' : 'העתק פרומפט',
+        copyStyle: this.copyStyle(TIP.prompt.id)
+      },
+      feature: TIP.feature,
+      story: TIP.story
+    };
+  }
+}
+
+</script>
+</body>
+</html>
